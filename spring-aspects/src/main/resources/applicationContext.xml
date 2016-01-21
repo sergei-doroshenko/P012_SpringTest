@@ -9,12 +9,12 @@
 
     <context:component-scan base-package="org.sergei" annotation-config="true"/>
 
-    <bean id="performerBean" class="org.sergei.aop.PerformerImpl"/>
-    <bean id="aspectBean" class="org.sergei.aop.Aspect" init-method="addAppender"/>
-    <bean id="workerBean" class="org.sergei.aop.Worker"/>
+    <bean id="performerBean" class="org.sergei.quest.aop.PerformerImpl"/>
+    <bean id="aspectBean" class="org.sergei.quest.aop.Aspect" init-method="addAppender"/>
+    <bean id="workerBean" class="org.sergei.quest.aop.Worker"/>
 
-    <bean id="debugInterceptor" class="org.sergei.logit.LogInterceptor" init-method="addAppender"/>
-    <bean id="testForLogger" class="org.sergei.logit.TestForLogger"/>
+    <bean id="debugInterceptor" class="org.sergei.quest.logit.LogInterceptor" init-method="addAppender"/>
+    <bean id="testForLogger" class="org.sergei.quest.logit.TestForLogger"/>
 
     <!-- A regular bean definition in the application context,
     pointing to a bean class that has the @Aspect annotation
@@ -26,12 +26,12 @@
 
     <aop:config>
         <aop:aspect ref="aspectBean">
-            <aop:pointcut id="performerPointcut" expression="execution (* org.sergei.aop.PerformerImpl.doSmth(..))"/>
+            <aop:pointcut id="performerPointcut" expression="execution (* org.sergei.quest.aop.PerformerImpl.doSmth(..))"/>
             <aop:before method="before" pointcut-ref="performerPointcut"/>
             <aop:after method="after" pointcut-ref="performerPointcut"/>
         </aop:aspect>
         <aop:aspect ref="aspectBean">
-            <aop:pointcut id="workerPointcut" expression="execution(* org.sergei.aop.Worker.doSmth(..))"/>
+            <aop:pointcut id="workerPointcut" expression="execution(* org.sergei.quest.aop.Worker.doSmth(..))"/>
             <aop:after-throwing method="afterThrowing" pointcut-ref="workerPointcut"/>
             <aop:after-returning method="afterReturning" pointcut-ref="workerPointcut"/>
         </aop:aspect>
@@ -39,8 +39,8 @@
 
     <aop:config>
         <!-- intercept calls of @LogIt methods -->
-        <aop:advisor pointcut="(execution(@org.sergei.logit.LogIt * *(..))
-                                || execution(* (@org.sergei.logit.LogIt *).*(..)))"
+        <aop:advisor pointcut="(execution(@org.sergei.quest.logit.LogIt * *(..))
+                                || execution(* (@org.sergei.quest.logit.LogIt *).*(..)))"
                      advice-ref="debugInterceptor"/>
     </aop:config>
 </beans> 

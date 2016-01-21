@@ -10,15 +10,15 @@
     <context:component-scan base-package="org.sergei.bean_post_proc" />
     <!-- bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/-->
     <!-- no id because it nor for injection -->
-    <bean class="org.sergei.inject_rnd_int.InjectRandomIntAnnotationBeanPostProcessor"/>
+    <bean class="org.sergei.quest.inject_rnd_int.InjectRandomIntAnnotationBeanPostProcessor"/>
 
-    <bean class="org.sergei.profiling.ProfingHandlerBeanPostProcessor"/>
+    <bean class="org.sergei.quest.profiling.ProfingHandlerBeanPostProcessor"/>
 
-    <bean class="org.sergei.context_listener.PostProxyInvokerContextListener"/>
+    <bean class="org.sergei.quest.context_listener.PostProxyInvokerContextListener"/>
 
-    <bean class="org.sergei.deprecated_class.DeprecationBeanFactoryPostProcessor"/>
+    <bean class="org.sergei.quest.deprecated_class.DeprecationBeanFactoryPostProcessor"/>
 
-    <bean id="terminatorQuoter" class="org.sergei.quoter.TerminatorQuoter">
+    <bean id="terminatorQuoter" class="org.sergei.quest.quoter.TerminatorQuoter">
         <property name="message" value="I'll be back!"/>
     </bean>
 

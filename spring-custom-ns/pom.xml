@@ -2,37 +2,36 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>P012_SpringTest</artifactId>
+        <groupId>org.sergei</groupId>
+        <version>1.0</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.sergei</groupId>
-    <artifactId>P012_SpringTest</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0</version>
-    <modules>
-        <module>spring-the-ripper</module>
-        <module>spring-inject</module>
-        <module>spring-aspects</module>
-        <module>spring-context-workflow</module>
-        <module>spring-xbeans-test</module>
-        <module>spring-custom-ns</module>
-    </modules>
+    <artifactId>spring-custom-ns</artifactId>
 
     <properties>
-        <!-- Use same version of Spring Framwork -->
-        <spring.version>4.0.1.RELEASE</spring.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
+        <junit.version>4.11</junit.version>
+        <jdk.version>1.7</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
+            <version>4.2.4.RELEASE</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
+            <artifactId>spring-beans</artifactId>
+            <version>4.2.4.RELEASE</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -40,11 +39,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <!--version>2.3.2</version-->
+                <version>3.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
                 </configuration>
             </plugin>
         </plugins>
