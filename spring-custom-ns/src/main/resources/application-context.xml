@@ -7,7 +7,7 @@
                         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean:bean id="simpleListener" class="org.sergei.quest.SimpleMenuItemListener" />
+    <bean:bean id="simpleListener" class="org.sergei.SimpleMenuItemListener" />
 
     <menu id="menu1" title="Parent 1">
         <menu id="menu2" title="Child 1" listener="simpleListener" />

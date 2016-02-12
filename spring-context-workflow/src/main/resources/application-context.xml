@@ -3,5 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+       <bean id="beanA" class="org.sergei.BeanA">
+              <property name="beanB" ref="beanB"/>
+       </bean>
 
+       <bean id="beanB" class="org.sergei.BeanB">
+              <property name="beanA" ref="beanA"/>
+       </bean>
 </beans>
