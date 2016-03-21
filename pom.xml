@@ -15,6 +15,7 @@
         <module>spring-context-workflow</module>
         <module>spring-xbeans-test</module>
         <module>spring-custom-ns</module>
+        <module>spring-transactions</module>
     </modules>
 
     <properties>
