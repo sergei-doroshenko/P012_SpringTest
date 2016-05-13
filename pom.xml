@@ -16,6 +16,7 @@
         <module>spring-xbeans-test</module>
         <module>spring-custom-ns</module>
         <module>spring-transactions</module>
+        <module>spring-services</module>
     </modules>
 
     <properties>
