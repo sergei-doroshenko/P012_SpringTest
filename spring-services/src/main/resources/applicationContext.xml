@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
-    <context:component-scan base-package="org.sergei.service" annotation-config="true"/>
+    <context:component-scan base-package="org.sergei.service, org.sergei.converter" annotation-config="true"/>
 
     <util:list id="sList" value-type="org.sergei.service.Strategy">
         <ref bean="userStrategy"/>
