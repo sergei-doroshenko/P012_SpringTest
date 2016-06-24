@@ -10,4 +10,13 @@
        <bean id="beanB" class="org.sergei.BeanB">
               <property name="beanA" ref="beanA"/>
        </bean>
+
+       <bean id="beanWithConstr" class="org.sergei.BeanWithConstructor">
+              <constructor-arg>
+                     <list>
+                            <value>Hello</value>
+                            <value>GoodBye</value>
+                     </list>
+              </constructor-arg>
+       </bean>
 </beans>

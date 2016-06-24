@@ -16,5 +16,8 @@ public class App {
 
         System.out.println(beanA);
         System.out.println(beanB);
+
+        BeanWithConstructor beanWithConstructor = (BeanWithConstructor) context.getBean( "beanWithConstr" );
+        System.out.println( beanWithConstructor );
     }
 }
