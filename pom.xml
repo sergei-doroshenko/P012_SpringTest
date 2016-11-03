@@ -17,6 +17,9 @@
         <module>spring-custom-ns</module>
         <module>spring-transactions</module>
         <module>spring-services</module>
+        <module>spring-unit-test</module>
+        <module>guava-test</module>
+        <module>spring-scheduled</module>
     </modules>
 
     <properties>
@@ -29,11 +32,13 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

@@ -34,4 +34,9 @@ public class ServiceImpl2 implements Service {
         transactionManager.commit(status);
         return null;
     }
+
+    @Override
+    public void someServiceMethod2() {
+
+    }
 }
