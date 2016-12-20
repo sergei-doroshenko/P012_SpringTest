@@ -2,27 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>P012_SpringTest</artifactId>
+        <groupId>org.sergei</groupId>
+        <version>1.0</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.sergei</groupId>
-    <artifactId>P012_SpringTest</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0</version>
-    <modules>
-        <module>spring-the-ripper</module>
-        <module>spring-inject</module>
-        <module>spring-aspects</module>
-        <module>spring-context-workflow</module>
-        <module>spring-xbeans-test</module>
-        <module>spring-custom-ns</module>
-        <module>spring-transactions</module>
-        <module>spring-services</module>
-        <module>spring-unit-test</module>
-        <module>guava-test</module>
-        <module>spring-scheduled</module>
-        <module>legacy-batch</module>
-        <module>spring-hiber</module>
-    </modules>
+    <artifactId>legacy-batch</artifactId>
 
     <properties>
         <!-- Use same version of Spring Framwork -->
@@ -34,13 +21,11 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

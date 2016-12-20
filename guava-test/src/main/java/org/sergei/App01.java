@@ -1,10 +1,7 @@
 package org.sergei;
 
 import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
+import com.google.common.collect.*;
 
 import java.util.*;
 
@@ -13,7 +10,7 @@ import java.util.*;
  */
 public class App01 {
     public static void main(String[] args) {
-
+        // Input data
         List<Item> items = Arrays.asList(
                 new Item(10L, "John", "California"),
                 new Item(20L, "Mark", "California"),
@@ -24,25 +21,25 @@ public class App01 {
                 new Item(70L, "Sara", "Texes")
         );
 
-        Multimap<String, Item> map = Multimaps.index(items, new Function<Item, String>() {
+        // Map domain to Collection of Items
+        Multimap<String, Item> multiMap = Multimaps.index(items, new Function<Item, String>() {
             @Override
             public String apply(Item input) {
                 return input.getDomain();
             }
         });
 
-        System.out.println("Multimap:" + map);
+        System.out.println("Multimap:" + multiMap);
+        Collection<Item> multimapValues = multiMap.values();
+        System.out.println("Multimap's values():" + multimapValues );
 
-        Map<String, Collection<Item>> mm = map.asMap();
-        Collection<Item> v0 = map.values();
+        Map<String, Collection<Item>> plainMap = multiMap.asMap();
+        System.out.println("Plain map: " + plainMap);
 
-
-
-        System.out.println("values():" + v0 );
-
+        // Transform mapped
         List<Result> res = new ArrayList<>();
-        for ( String key : mm.keySet() ) {
-            Collection<Item> collection = mm.get( key );
+        for ( String key : plainMap.keySet() ) {
+            Collection<Item> collection = plainMap.get( key );
             Result result = new Result();
             result.setDomain( collection.iterator().next().getDomain() );
 
@@ -57,7 +54,12 @@ public class App01 {
             res.add( result );
         }
 
-        for ( Map.Entry<String, Collection<Item>> entry : mm.entrySet() ) {
+        System.out.println( res );
+
+        System.out.println("******************************************************************************************");
+        System.out.println("Before sort:");
+        // This transformation contains duplicates
+        for ( Map.Entry<String, Collection<Item>> entry : plainMap.entrySet() ) {
             Collection<Item> collection = entry.getValue();
             Result result = new Result();
             result.setDomain( collection.iterator().next().getDomain() );
@@ -73,6 +75,21 @@ public class App01 {
             res.add( result );
         }
 
+        System.out.println( res );
+        System.out.println();
+
+        System.out.println("******************************************************************************************");
+        System.out.println("After sort:");
+
+        Collections.sort( res, new Ordering<Result>() {
+            @Override
+            public int compare ( Result left, Result right ) {
+                return ComparisonChain.start()
+                        .compare(left.getDomain(), right.getDomain())
+//                        .compare(right.getNames(), left.getNames())
+                        .result();
+            }
+        } );
 
         System.out.println( res );
     }
