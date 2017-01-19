@@ -3,11 +3,18 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/P012_SpringTest.iml" filepath="$PROJECT_DIR$/P012_SpringTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legacy-batch/legacy-batch.iml" filepath="$PROJECT_DIR$/legacy-batch/legacy-batch.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-aspects/spring-aspects.iml" filepath="$PROJECT_DIR$/spring-aspects/spring-aspects.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-context-workflow/spring-context-workflow.iml" filepath="$PROJECT_DIR$/spring-context-workflow/spring-context-workflow.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-custom-ns/spring-custom-ns.iml" filepath="$PROJECT_DIR$/spring-custom-ns/spring-custom-ns.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-hiber/spring-hiber.iml" filepath="$PROJECT_DIR$/spring-hiber/spring-hiber.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-inject/spring-inject.iml" filepath="$PROJECT_DIR$/spring-inject/spring-inject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-jpa/spring-jpa.iml" filepath="$PROJECT_DIR$/spring-jpa/spring-jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-scheduled/spring-scheduled.iml" filepath="$PROJECT_DIR$/spring-scheduled/spring-scheduled.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-services/spring-services.iml" filepath="$PROJECT_DIR$/spring-services/spring-services.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-the-ripper/spring-the-ripper.iml" filepath="$PROJECT_DIR$/spring-the-ripper/spring-the-ripper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-transactions/spring-transactions.iml" filepath="$PROJECT_DIR$/spring-transactions/spring-transactions.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-unit-test/spring-unit-test.iml" filepath="$PROJECT_DIR$/spring-unit-test/spring-unit-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-xbeans-test/spring-xbeans-test.iml" filepath="$PROJECT_DIR$/spring-xbeans-test/spring-xbeans-test.iml" />
     </modules>
   </component>
