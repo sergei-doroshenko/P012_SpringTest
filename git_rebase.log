@@ -1,0 +1,96 @@
+$ git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+
+Sergei_Admin@sergei MINGW64 /e/projects/idea_projects/P012_SpringTest (master)
+$ git merge delivery
+Updating f15e28d..b8ba1a1
+Fast-forward
+ P012_SpringTest.iml                                |  6 ---
+ .../src/main/java/org/sergei/hiber/HiberApp.java   |  4 ++
+ .../java/org/sergei/hiber/domain/Delivery.java     | 48 ++++++++++++++++++++++
+ .../main/java/org/sergei/hiber/domain/Order.java   | 12 ++++++
+ spring-hiber/src/main/resources/schema.sql         | 12 +++++-
+ spring-hiber/src/main/resources/test-data.sql      |  3 +-
+ 6 files changed, 76 insertions(+), 9 deletions(-)
+ delete mode 100644 P012_SpringTest.iml
+ create mode 100644 spring-hiber/src/main/java/org/sergei/hiber/domain/Delivery.java
+
+Sergei_Admin@sergei MINGW64 /e/projects/idea_projects/P012_SpringTest (master)
+$ git checkout tags
+Switched to branch 'tags'
+Your branch is up-to-date with 'origin/tags'.
+
+Sergei_Admin@sergei MINGW64 /e/projects/idea_projects/P012_SpringTest (tags)
+$ git rebase -i master
+error: could not apply 814a2bd... Added Tag entity
+
+When you have resolved this problem, run "git rebase --continue".
+If you prefer to skip this patch, run "git rebase --skip" instead.
+To check out the original branch and stop rebasing, run "git rebase --abort".
+Could not apply 814a2bdb845efe66d87db6d276e52a00dc967231... Added Tag entity
+
+Sergei_Admin@sergei MINGW64 /e/projects/idea_projects/P012_SpringTest (tags|REBASE-i 1/1)
+$ git mergetool
+Merging:
+spring-hiber/src/main/java/org/sergei/hiber/domain/Order.java
+spring-hiber/src/main/resources/schema.sql
+spring-hiber/src/main/resources/test-data.sql
+
+Normal merge conflict for 'spring-hiber/src/main/java/org/sergei/hiber/domain/Order.java':
+  {local}: modified file
+  {remote}: modified file
+
+Normal merge conflict for 'spring-hiber/src/main/resources/schema.sql':
+  {local}: modified file
+  {remote}: modified file
+
+Normal merge conflict for 'spring-hiber/src/main/resources/test-data.sql':
+  {local}: modified file
+  {remote}: modified file
+
+Sergei_Admin@sergei MINGW64 /e/projects/idea_projects/P012_SpringTest (tags|REBASE-i 1/1)
+$ git status
+interactive rebase in progress; onto b8ba1a1
+Last command done (1 command done):
+   pick 814a2bd Added Tag entity
+No commands remaining.
+You are currently rebasing branch 'tags' on 'b8ba1a1'.
+  (all conflicts fixed: run "git rebase --continue")
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   spring-hiber/src/main/java/org/sergei/hiber/HiberApp.java
+        modified:   spring-hiber/src/main/java/org/sergei/hiber/dao/OrderDao.java
+        modified:   spring-hiber/src/main/java/org/sergei/hiber/domain/Order.java
+        new file:   spring-hiber/src/main/java/org/sergei/hiber/domain/Tag.java
+        modified:   spring-hiber/src/main/resources/application-context.xml
+        modified:   spring-hiber/src/main/resources/schema.sql
+        modified:   spring-hiber/src/main/resources/test-data.sql
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        spring-hiber/src/main/java/org/sergei/hiber/domain/Order.java.orig
+        spring-hiber/src/main/resources/schema.sql.orig
+        spring-hiber/src/main/resources/test-data.sql.orig
+
+
+Sergei_Admin@sergei MINGW64 /e/projects/idea_projects/P012_SpringTest (tags|REBASE-i 1/1)
+$ git rebase --continue
+[detached HEAD 2217627] Added Tag entity
+ Author: sdoroshenko <VieFP1l-K3Yw>
+ 7 files changed, 104 insertions(+), 10 deletions(-)
+ create mode 100644 spring-hiber/src/main/java/org/sergei/hiber/domain/Tag.java
+Successfully rebased and updated refs/heads/tags.
+
+Sergei_Admin@sergei MINGW64 /e/projects/idea_projects/P012_SpringTest (tags)
+$ git log -4 --pretty=oneline
+22176275be4c73eed6af696367716a247049b067 Added Tag entity
+b8ba1a1646400a02fc133e323bf8960a120c6e73 Added Delivery entity
+f15e28d63baba62131f3242763fa682dc40b177c Remove IDEA files
+ee46d33b8430413b2d012dad4ecc2b426ab3b9fc Remove IDEA files
+
+Sergei_Admin@sergei MINGW64 /e/projects/idea_projects/P012_SpringTest (tags)
+$
