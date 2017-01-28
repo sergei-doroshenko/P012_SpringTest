@@ -18,11 +18,9 @@
         <module>spring-transactions</module>
         <module>spring-services</module>
         <module>spring-unit-test</module>
-        <module>guava-test</module>
         <module>spring-scheduled</module>
         <module>legacy-batch</module>
         <module>spring-hiber</module>
-        <module>spring_jpa</module>
     </modules>
 
     <properties>
