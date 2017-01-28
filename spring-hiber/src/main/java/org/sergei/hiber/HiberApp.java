@@ -1,6 +1,7 @@
 package org.sergei.hiber;
 
 import org.sergei.hiber.dao.OrderDao;
+import org.sergei.hiber.domain.Delivery;
 import org.sergei.hiber.domain.Order;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,6 +23,9 @@ public class HiberApp {
 
         Order order1 = new Order();
         order1.setDescription( "New order" );
+        Delivery delivery = new Delivery();
+        delivery.setId(1L);
+        order1.setDelivery(delivery);
         orderDao.save( order1 );
 
         List<Order> orders1 = orderDao.findAll();

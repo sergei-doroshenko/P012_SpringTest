@@ -20,6 +20,10 @@ public class Order {
     @Column(name = "order_description")
     private String description;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "delivery_id", nullable = false)
+    private Delivery delivery;
+
     public Long getId () {
         return id;
     }
@@ -34,6 +38,14 @@ public class Order {
 
     public void setDescription ( String description ) {
         this.description = description;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 
     @Override
