@@ -6,6 +6,7 @@ import org.sergei.hiber.domain.Order;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,6 +20,11 @@ public class HiberApp {
         OrderDao orderDao = context.getBean( OrderDao.class );
         List<Order> orders0 = orderDao.findOrder( 1L );
         System.out.println(orders0);
+        System.out.println("----------------------------------------------------------------------------");
+        System.out.println("Find eagerly by id:");
+        List<Order> orders01 = orderDao.findEagerly(1L, Arrays.asList("tags"));
+        System.out.println("Orders: " + orders01);
+        orders01.stream().forEach(o -> System.out.println(o.getTags()));
         System.out.println("----------------------------------------------------------------------------");
 
         Order order1 = new Order();
