@@ -22,7 +22,7 @@ public class HiberApp {
         System.out.println(orders0);
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("Find eagerly by id:");
-        List<Order> orders01 = orderDao.findEagerly(1L, Arrays.asList("tags"));
+        List<Order> orders01 = orderDao.findEagerly(1L, Arrays.asList("delivery", "tags"));
         System.out.println("Orders: " + orders01);
         orders01.stream().forEach(o -> System.out.println(o.getTags()));
         System.out.println("----------------------------------------------------------------------------");
@@ -36,6 +36,8 @@ public class HiberApp {
 
         List<Order> orders1 = orderDao.findAll();
         System.out.println(orders1);
+        List<Order> orders11 = orderDao.findEagerly(Arrays.asList(1L, 2L, 3L),  Arrays.asList("delivery", "tags"));
+        System.out.println(orders11);
         System.out.println("----------------------------------------------------------------------------");
 
         orderDao.delete( orders1 );

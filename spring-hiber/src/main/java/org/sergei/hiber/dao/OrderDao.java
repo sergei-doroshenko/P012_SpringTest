@@ -51,6 +51,15 @@ public class OrderDao extends HibernateDaoSupport {
         return criteria.list();
     }
 
+    @Transactional
+    public List<Order> findEagerly( List<Long> orderIds, Collection<String> associations ) {
+        Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Order.class);
+        criteria.add(Restrictions.in("id", orderIds));
+        associations.stream().forEach(a -> criteria.setFetchMode(a, FetchMode.JOIN));
+        criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+        return criteria.list();
+    }
+
     public List<Order> findAll() {
         List<Order> orders = ( List<Order> ) getHibernateTemplate().find(" from Order ");
         return orders;
