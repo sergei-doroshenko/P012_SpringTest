@@ -1,5 +1,9 @@
 package org.sergei.hiber.dao;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.HibernateException;
@@ -8,18 +12,9 @@ import org.hibernate.Session;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Restrictions;
 import org.sergei.hiber.domain.Order;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate4.HibernateCallback;
-import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Sergei_Doroshenko on 12/5/2016.
