@@ -1,5 +1,6 @@
 package org.sergei.hiber.dao;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +11,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.ResultTransformer;
+import org.sergei.hiber.domain.Delivery;
 import org.sergei.hiber.domain.Order;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
@@ -51,7 +55,50 @@ public class OrderDao extends HibernateDaoSupport {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Order.class);
         criteria.add(Restrictions.in("id", orderIds));
         associations.stream().forEach(a -> criteria.setFetchMode(a, FetchMode.JOIN));
-        criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+//        criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+        criteria.setResultTransformer(CriteriaSpecification.ROOT_ENTITY);
+        return criteria.list();
+    }
+
+    /**
+     * Distinct with criteria example.
+     */
+    @Transactional
+    public List<Delivery> findEagerlyDistinct(List<Long> orderIds) {
+        Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Order.class);
+        criteria.setFetchMode("delivery", FetchMode.JOIN);
+        criteria.createAlias("delivery", "d");
+
+        criteria.add(Restrictions.in("id", orderIds));
+
+        criteria.setProjection(Projections.projectionList()
+                        .add(Projections.distinct(Projections.property("delivery.id")))
+//                        .add(Projections.property("description"))
+                        .add(Projections.property("d.id"))
+                        .add(Projections.property("d.title"))
+//                .add(Projections.property("delivery"))
+        );
+
+
+//        associations.stream().forEach(a -> criteria.setFetchMode(a, FetchMode.JOIN));
+
+
+
+        criteria.setResultTransformer(new ResultTransformer() {
+            @Override
+            public Object transformTuple(Object[] objects, String[] strings) {
+                System.out.println(Arrays.toString(objects));
+                Delivery delivery = new Delivery();
+                delivery.setId((Long) objects[0]);
+                return delivery;
+            }
+
+            @Override
+            public List transformList(List list) {
+                return list;
+            }
+        });
+
         return criteria.list();
     }
 

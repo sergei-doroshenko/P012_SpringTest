@@ -26,6 +26,10 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<Tag> tags;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
     public Long getId () {
         return id;
     }
@@ -58,13 +62,18 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", description='" + description + '\'' +
+                ", description=" + description +
+                ", status=" + status +
                 /*", tags=" + (tags == null ? "[]" : tags)  +*/
-                '}';
+                "'}";
     }
     /*
     org.hibernate.LazyInitializationException: failed to lazily initialize
     a collection of role: org.sergei.hiber.domain.Order.tags,
     could not initialize proxy - no Session
      */
+
+    enum Status {
+        IN_PROGRESS, COMPLETED
+    }
 }

@@ -22,7 +22,7 @@
     <!--<bean id="decrementAspect" class="org.sergei.add.DecrementAspect"/>-->
 
     <!-- enable @AspectJ support with XML based configuration -->
-    <aop:aspectj-autoproxy />
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <aop:config>
         <aop:aspect ref="aspectBean">

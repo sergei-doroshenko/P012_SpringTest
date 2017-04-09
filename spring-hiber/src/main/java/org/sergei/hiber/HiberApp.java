@@ -18,7 +18,7 @@ public class HiberApp {
         ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
 
         OrderDao orderDao = context.getBean( OrderDao.class );
-        List<Order> orders0 = orderDao.findOrder( 1L );
+        /*List<Order> orders0 = orderDao.findOrder( 1L );
         System.out.println(orders0);
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("Find eagerly by id:");
@@ -35,15 +35,18 @@ public class HiberApp {
         orderDao.save( order1 );
 
         List<Order> orders1 = orderDao.findAll();
-        System.out.println(orders1);
+        System.out.println(orders1);*/
+        System.out.println("-----------------  LOOK AT THIS   ---------------------------");
         List<Order> orders11 = orderDao.findEagerly(Arrays.asList(1L, 2L, 3L),  Arrays.asList("delivery", "tags"));
         System.out.println(orders11);
+        List<Delivery> deliveries = orderDao.findEagerlyDistinct(Arrays.asList(1L, 2L, 3L));
+        System.out.println(deliveries);
         System.out.println("----------------------------------------------------------------------------");
 
-        orderDao.delete( orders1 );
+//        orderDao.delete( orders1 );
 
-        List<Order> orders2 = orderDao.findAll();
-        System.out.println(orders2);
+//        List<Order> orders2 = orderDao.findAll();
+//        System.out.println(orders2);
 
     }
 }
