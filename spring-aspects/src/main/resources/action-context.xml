@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="tracker" class="org.sergei.action.Tracker">
+    </bean>
+
+    <aop:config proxy-target-class="true">
+        <aop:aspect id="asp1" ref="tracker">
+            <!--<aop:pointcut id="pc1" expression="execution(* org.sergei.action.Traceable.isAllowed(..))"/>-->
+            <aop:pointcut id="pc1" expression="execution(* org.sergei.action.Traceable.isAllowed(..))"/>
+            <aop:around method="retunrnFalse" pointcut-ref="pc1" />
+        </aop:aspect>
+    </aop:config>
+
+</beans>
