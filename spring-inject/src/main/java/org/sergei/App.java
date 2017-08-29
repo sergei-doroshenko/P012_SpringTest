@@ -21,12 +21,8 @@ public class App {
         SomeComponent someComponent = context.getBean(SomeComponent.class);
         System.out.println(someComponent.getName());
 
-        /*ManualInjection manualInjection = new ManualInjection();
-        ContextLoader contextLoader = new ContextLoader();
-        ServletContext servletContext = new Servlet
-        contextLoader.initWebApplicationContext()
-//        ContextLoader.setWeb
+        ManualInjection manualInjection = new ManualInjection();
         SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(manualInjection);
-        System.out.println(manualInjection.getNameFromInjected()); // NPE*/
+        System.out.println(manualInjection.getNameFromInjected()); // NPE
     }
 }
