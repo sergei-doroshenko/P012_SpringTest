@@ -23,7 +23,7 @@ public class Order {
     @JoinColumn(name = "delivery_id", nullable = false)
     private Delivery delivery;
     
-    @OneToMany(mappedBy = "order", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Tag> tags;
 
     @Column(nullable = false)
@@ -58,6 +58,18 @@ public class Order {
         return tags;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -74,7 +86,7 @@ public class Order {
     could not initialize proxy - no Session
      */
 
-    enum Status {
+    public enum Status {
         IN_PROGRESS, COMPLETED
     }
 }

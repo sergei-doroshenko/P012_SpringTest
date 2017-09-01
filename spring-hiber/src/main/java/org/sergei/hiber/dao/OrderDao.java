@@ -2,8 +2,11 @@ package org.sergei.hiber.dao;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.hibernate.Criteria;
@@ -15,9 +18,11 @@ import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.internal.CriteriaImpl;
+import org.hibernate.sql.JoinType;
 import org.hibernate.transform.ResultTransformer;
 import org.sergei.hiber.domain.Delivery;
 import org.sergei.hiber.domain.Order;
+import org.sergei.hiber.domain.Tag;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
@@ -134,22 +139,43 @@ public class OrderDao extends HibernateDaoSupport {
     @Transactional
     public List<Order> getBySQL() {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Order.class);
-        criteria.setFetchMode("tags", FetchMode.JOIN);
+        criteria.createAlias("tags", "tags", JoinType.LEFT_OUTER_JOIN);
 
         System.out.println(criteria);
 
-        String sql = "{alias}.status = 'COMPLETED'";
+        String sqlTags = "{alias}.value = 'tag1'";
 
-        /*Iterator<CriteriaImpl.Subcriteria> subCriterias = ((CriteriaImpl) criteria).iterateSubcriteria();
+        Iterator<CriteriaImpl.Subcriteria> subCriterias = ((CriteriaImpl) criteria).iterateSubcriteria();
         while (subCriterias.hasNext()) {
             CriteriaImpl.Subcriteria subcriteria = subCriterias.next();
             System.out.println(subcriteria.getAlias());
             if ("tags".equals(subcriteria.getAlias())) {
                 System.out.println("success!!!!");
+                subcriteria.add(Restrictions.sqlRestriction(sqlTags));
             }
-        }*/
+        }
 
-        criteria.add(Restrictions.sqlRestriction(sql));
+        criteria.setProjection(Projections.projectionList()
+                .add(Projections.property("description"))
+                .add(Projections.property("status"))
+                .add(Projections.property("tags.value"))
+        );
+
+        criteria.setResultTransformer(new ResultTransformer() {
+            @Override
+            public Object transformTuple(Object[] objects, String[] strings) {
+                Map<String, Object> result = new HashMap<>();
+                result.put("description", objects[0]);
+                result.put("status", objects[1]);
+                result.put("tagValue", objects[2]);
+                return result;
+            }
+
+            @Override
+            public List transformList(List list) {
+                return list;
+            }
+        });
 
         return criteria.list();
     }

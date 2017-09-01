@@ -30,12 +30,12 @@ public class HiberApp {
     }
 
     public static void orderDaoTest2(ApplicationContext context) {
-        OrderDao orderDao = context.getBean(OrderDao.class);
         System.out.println("********************************************");
         System.out.println("**                SQL                     **");
         System.out.println("********************************************");
-        DeliveryDao deliveryDao = context.getBean(DeliveryDao.class);
-        System.out.println(orderDao.getBySQL());
+        OrderDao orderDao = context.getBean(OrderDao.class);
+        List<Order> orders = orderDao.getBySQL();
+        System.out.println(orders);
     }
 
     public static void orderDaoTest(ApplicationContext context) {
