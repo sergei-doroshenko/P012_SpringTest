@@ -1,5 +1,6 @@
 package org.sergei.hiber;
 
+import org.sergei.hiber.dao.DeliveryDao;
 import org.sergei.hiber.dao.OrderDao;
 import org.sergei.hiber.domain.Delivery;
 import org.sergei.hiber.domain.Order;
@@ -14,10 +15,31 @@ import java.util.List;
  */
 public class HiberApp {
 
-    public static void main ( String[] args ) {
+    public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+        orderDaoTest2(context);
+//        deliveryDaoTest(context);
+    }
 
-        OrderDao orderDao = context.getBean( OrderDao.class );
+    public static void deliveryDaoTest(ApplicationContext context) {
+        System.out.println("********************************************");
+        System.out.println("**                SQL                     **");
+        System.out.println("********************************************");
+        DeliveryDao deliveryDao = context.getBean(DeliveryDao.class);
+        System.out.println(deliveryDao.getBySQL());
+    }
+
+    public static void orderDaoTest2(ApplicationContext context) {
+        OrderDao orderDao = context.getBean(OrderDao.class);
+        System.out.println("********************************************");
+        System.out.println("**                SQL                     **");
+        System.out.println("********************************************");
+        DeliveryDao deliveryDao = context.getBean(DeliveryDao.class);
+        System.out.println(orderDao.getBySQL());
+    }
+
+    public static void orderDaoTest(ApplicationContext context) {
+        OrderDao orderDao = context.getBean(OrderDao.class);
         /*List<Order> orders0 = orderDao.findOrder( 1L );
         System.out.println(orders0);
         System.out.println("----------------------------------------------------------------------------");
@@ -37,7 +59,7 @@ public class HiberApp {
         List<Order> orders1 = orderDao.findAll();
         System.out.println(orders1);*/
         System.out.println("-----------------  LOOK AT THIS   ---------------------------");
-        List<Order> orders11 = orderDao.findEagerly(Arrays.asList(1L, 2L, 3L),  Arrays.asList("delivery", "tags"));
+        List<Order> orders11 = orderDao.findEagerly(Arrays.asList(1L, 2L, 3L), Arrays.asList("delivery", "tags"));
         System.out.println(orders11);
         List<Delivery> deliveries = orderDao.findEagerlyDistinct(Arrays.asList(1L, 2L, 3L));
         System.out.println(deliveries);
@@ -47,6 +69,5 @@ public class HiberApp {
 
 //        List<Order> orders2 = orderDao.findAll();
 //        System.out.println(orders2);
-
     }
 }

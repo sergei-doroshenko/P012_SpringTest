@@ -33,7 +33,7 @@ public class Tag {
         return "Tag{" +
                 "id=" + id +
                 ", value='" + value + '\'' +
-                ", orderId=" + order.getId() +
+                /*", orderId=" + order.getId() +*/
                 '}';
     }
 }

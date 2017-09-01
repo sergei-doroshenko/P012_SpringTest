@@ -52,4 +52,8 @@
         <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
 
+    <bean id="deliverDao" class="org.sergei.hiber.dao.DeliveryDao">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+
 </beans>

@@ -51,7 +51,7 @@ public class Delivery {
         return "Delivery{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", orders=" + orders +
+                /*", orders=" + orders +*/
                 '}';
     }
 }

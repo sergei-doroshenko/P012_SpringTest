@@ -64,7 +64,8 @@ public class Order {
                 "id=" + id +
                 ", description=" + description +
                 ", status=" + status +
-                /*", tags=" + (tags == null ? "[]" : tags)  +*/
+                /*", delivery=" + delivery +*/
+                ", tags=" + (tags == null ? "[]" : tags)  +
                 "'}";
     }
     /*
