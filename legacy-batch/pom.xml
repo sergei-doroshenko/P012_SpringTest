@@ -13,7 +13,7 @@
 
     <properties>
         <!-- Use same version of Spring Framwork -->
-        <spring.version>4.0.1.RELEASE</spring.version>
+        <spring.version>4.2.9.RELEASE</spring.version>
     </properties>
 
     <dependencies>
