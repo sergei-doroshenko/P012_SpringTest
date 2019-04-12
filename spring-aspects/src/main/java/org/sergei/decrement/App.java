@@ -11,5 +11,6 @@ public class App {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         IncrementService service = context.getBean(IncrementService.class);
         System.out.println("service.inc(10): " + service.inc(10));
+        service.send("Hello");
     }
 }

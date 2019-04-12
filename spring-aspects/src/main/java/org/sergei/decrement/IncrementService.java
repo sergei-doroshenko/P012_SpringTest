@@ -7,7 +7,12 @@ import org.springframework.stereotype.Service;
  */
 @Service("incrementalService")
 public class IncrementService {
+
     public int inc(int i){
         return i+1;
+    }
+
+    public void send(String message) {
+        System.out.println("Send: " + message);
     }
 }
