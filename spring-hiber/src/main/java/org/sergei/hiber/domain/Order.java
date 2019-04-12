@@ -23,8 +23,12 @@ public class Order {
     @JoinColumn(name = "delivery_id", nullable = false)
     private Delivery delivery;
     
-    @OneToMany(mappedBy = "order", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Tag> tags;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     public Long getId () {
         return id;
@@ -54,17 +58,35 @@ public class Order {
         return tags;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", description='" + description + '\'' +
-                /*", tags=" + (tags == null ? "[]" : tags)  +*/
-                '}';
+                ", description=" + description +
+                ", status=" + status +
+                /*", delivery=" + delivery +*/
+                ", tags=" + (tags == null ? "[]" : tags)  +
+                "'}";
     }
     /*
     org.hibernate.LazyInitializationException: failed to lazily initialize
     a collection of role: org.sergei.hiber.domain.Order.tags,
     could not initialize proxy - no Session
      */
+
+    public enum Status {
+        IN_PROGRESS, COMPLETED
+    }
 }

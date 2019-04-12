@@ -2,31 +2,34 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>P012_SpringTest</artifactId>
-        <groupId>org.sergei</groupId>
-        <version>1.0</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>legacy-batch</artifactId>
+    <groupId>org.sergei</groupId>
+    <artifactId>spring-security</artifactId>
+    <version>1.0</version>
 
     <properties>
-        <!-- Use same version of Spring Framwork -->
-        <spring.version>4.2.9.RELEASE</spring.version>
+        <!-- Generic properties -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+        <!-- LOG -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
         </dependency>
+
+        <!-- Spring -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <!--<version>3.2.5.RELEASE</version>-->
+            <version>4.2.2.RELEASE</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -35,7 +38,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
-                <!--version>2.3.2</version-->
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>

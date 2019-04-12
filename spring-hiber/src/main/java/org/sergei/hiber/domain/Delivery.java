@@ -45,4 +45,13 @@ public class Delivery {
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
+
+    @Override
+    public String toString() {
+        return "Delivery{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                /*", orders=" + orders +*/
+                '}';
+    }
 }

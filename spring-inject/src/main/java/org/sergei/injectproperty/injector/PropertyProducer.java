@@ -24,8 +24,7 @@ public class PropertyProducer implements BeanPostProcessor {
                 String key = annotation.value();
 
                 Properties properties = new Properties();
-                final InputStream stream = PropertyProducer.class
-                        .getResourceAsStream("/application.properties");
+                final InputStream stream = PropertyProducer.class.getResourceAsStream("/application.properties");
                 if (stream == null) {
                     throw new RuntimeException("No properties!!!");
                 }
