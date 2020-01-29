@@ -21,6 +21,7 @@
         <module>spring-scheduled</module>
         <module>legacy-batch</module>
         <module>spring-hiber</module>
+        <module>web-app</module>
     </modules>
 
     <properties>

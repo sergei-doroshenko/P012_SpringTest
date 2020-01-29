@@ -60,25 +60,19 @@ crashlytics.properties
 crashlytics-build.properties
 
 # Created by .ignore support plugin (hsz.mobi)
-guava-test/src/main/resources/
-guava-test/src/test/
-guava-test/target/
-legacy-batch/src/test/
+**/target
 legacy-batch/target/
 spring-aspects/target/
 spring-context-workflow/target/
 spring-custom-ns/target/
 spring-hiber/target/
 spring-inject/target/
-spring-jpa/src/
-spring-jpa/target/classes/org/
-spring-jpa/target/generated-sources/
-spring-scheduled/src/test/
+spring-jpa/target
 spring-scheduled/target/
-spring-services/src/test/
 spring-services/target/
 spring-the-ripper/target/
 spring-transactions/target/
-spring-unit-test/src/main/resources/
 spring-unit-test/target/
 spring-xbeans-test/target/
+logs/
+web-app/target
