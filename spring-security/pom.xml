@@ -8,12 +8,6 @@
     <artifactId>spring-security</artifactId>
     <version>1.0</version>
 
-    <properties>
-        <!-- Generic properties -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
-    </properties>
-
     <dependencies>
         <!-- LOG -->
         <dependency>
@@ -26,10 +20,8 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <!--<version>3.2.5.RELEASE</version>-->
-            <version>4.2.2.RELEASE</version>
+            <version>4.2.12.RELEASE</version>
         </dependency>
-
     </dependencies>
 
     <build>

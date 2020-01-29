@@ -1,14 +1,5 @@
 package org.sergei.hiber.dao;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.HibernateException;
@@ -22,10 +13,17 @@ import org.hibernate.sql.JoinType;
 import org.hibernate.transform.ResultTransformer;
 import org.sergei.hiber.domain.Delivery;
 import org.sergei.hiber.domain.Order;
-import org.sergei.hiber.domain.Tag;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Created by Sergei_Doroshenko on 12/5/2016.
@@ -33,23 +31,24 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrderDao extends HibernateDaoSupport {
 
     @Transactional(readOnly = false)
-    public Long save( Order order ) {
-        Long id = ( Long ) getHibernateTemplate().save( order );
+    public Long save(Order order) {
+        Long id = (Long) getHibernateTemplate().save(order);
         return id;
     }
 
-    public List<Order> findOrder( Long orderId ) {
-        List<Order> orders = ( List<Order> ) getHibernateTemplate().find(" from Order o where o.id= ?", new Object[]{orderId});
-        return orders;
+    public List<Order> findOrder(Long orderId) {
+        List<?> orders = getHibernateTemplate().find(" from Order o where o.id= ?", new Object[]{orderId});
+        return orders.stream().map(o -> (Order) o).collect(Collectors.toList());
     }
 
     /**
      * org.hibernate.HibernateException: Could not obtain transaction-synchronized Session for current thread
+     *
      * @param orderId
      * @return List or Orders
      */
     @Transactional
-    public List<Order> findEagerly( Long orderId, Collection<String> associations ) {
+    public List<Order> findEagerly(Long orderId, Collection<String> associations) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Order.class);
         criteria.add(Restrictions.idEq(orderId));
         associations.stream().forEach(a -> criteria.setFetchMode(a, FetchMode.JOIN));
@@ -58,7 +57,7 @@ public class OrderDao extends HibernateDaoSupport {
     }
 
     @Transactional
-    public List<Order> findEagerly( List<Long> orderIds, Collection<String> associations ) {
+    public List<Order> findEagerly(List<Long> orderIds, Collection<String> associations) {
         Criteria criteria = getSessionFactory().getCurrentSession().createCriteria(Order.class);
         criteria.add(Restrictions.in("id", orderIds));
         associations.stream().forEach(a -> criteria.setFetchMode(a, FetchMode.JOIN));
@@ -79,16 +78,15 @@ public class OrderDao extends HibernateDaoSupport {
         criteria.add(Restrictions.in("id", orderIds));
 
         criteria.setProjection(Projections.projectionList()
-                        .add(Projections.distinct(Projections.property("delivery.id")))
+                .add(Projections.distinct(Projections.property("delivery.id")))
 //                        .add(Projections.property("description"))
-                        .add(Projections.property("d.id"))
-                        .add(Projections.property("d.title"))
+                .add(Projections.property("d.id"))
+                .add(Projections.property("d.title"))
 //                .add(Projections.property("delivery"))
         );
 
 
 //        associations.stream().forEach(a -> criteria.setFetchMode(a, FetchMode.JOIN));
-
 
 
         criteria.setResultTransformer(new ResultTransformer() {
@@ -110,30 +108,31 @@ public class OrderDao extends HibernateDaoSupport {
     }
 
     public List<Order> findAll() {
-        List<Order> orders = ( List<Order> ) getHibernateTemplate().find(" from Order ");
-        return orders;
+        return getHibernateTemplate().find(" from Order ").stream()
+            .map(o -> (Order) o)
+            .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = false)
-    public void delete ( List<Order> orders ) {
-        getHibernateTemplate().deleteAll( orders );
+    public void delete(List<Order> orders) {
+        getHibernateTemplate().deleteAll(orders);
     }
 
     @Transactional(readOnly = false)
-    public void deleteHql ( List<Order> orders ) {
+    public void deleteHql(List<Order> orders) {
         final String hql = "delete from Order o where o.id in :orderIds";
         final List<Long> orderIds = orders.stream()
-                .map( o -> o.getId() )
-                .collect( Collectors.toList() );
+            .map(o -> o.getId())
+            .collect(Collectors.toList());
 
-        getHibernateTemplate().execute( new HibernateCallback() {
+        getHibernateTemplate().execute(new HibernateCallback() {
             @Override
-            public Object doInHibernate ( Session session ) throws HibernateException {
-                Query query = session.createQuery( hql );
-                query.setParameterList( "orderIds", orderIds );
+            public Object doInHibernate(Session session) throws HibernateException {
+                Query query = session.createQuery(hql);
+                query.setParameterList("orderIds", orderIds);
                 return query.executeUpdate();
             }
-        } );
+        });
     }
 
     @Transactional
@@ -156,9 +155,9 @@ public class OrderDao extends HibernateDaoSupport {
         }
 
         criteria.setProjection(Projections.projectionList()
-                .add(Projections.property("description"))
-                .add(Projections.property("status"))
-                .add(Projections.property("tags.value"))
+            .add(Projections.property("description"))
+            .add(Projections.property("status"))
+            .add(Projections.property("tags.value"))
         );
 
         criteria.setResultTransformer(new ResultTransformer() {
