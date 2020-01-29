@@ -1,9 +1,13 @@
 package org.sergei.beans;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private InfoServiceImpl infoService;
 
     @Override
     public String getUserName() {
@@ -11,6 +15,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public String getMetaInfo() {
-        return "Meta Info from UserService";
+        infoService.trace();
+        return infoService.getInfo();
     }
 }

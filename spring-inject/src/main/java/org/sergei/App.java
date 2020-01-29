@@ -2,6 +2,7 @@ package org.sergei;
 
 import org.sergei.beans.ManualInjection;
 import org.sergei.beans.SomeComponent;
+import org.sergei.beans.Traceable;
 import org.sergei.beans.UserService;
 import org.sergei.beans.UserServiceImpl;
 import org.sergei.beans.Worker;
@@ -26,6 +27,8 @@ public class App {
         UserServiceImpl userService = context.getBean(UserServiceImpl.class);
         System.out.println(userService.getUserName());
         System.out.println(userService.getMetaInfo());
+
+        context.getBean(Traceable.class).trace();
 
         // placed in spring-web
         ManualInjection manualInjection = new ManualInjection();
