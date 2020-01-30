@@ -4,18 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService {
+public final class UserServiceImpl implements UserService {
+
+    private final MetaInfoServiceImpl infoService;
 
     @Autowired
-    private InfoServiceImpl infoService;
+    public UserServiceImpl(MetaInfoServiceImpl infoService) {
+        this.infoService = infoService;
+    }
 
     @Override
     public String getUserName() {
+        System.out.println(infoService.metaInfo(this.getClass()));
+        System.out.println(infoService.getInfo() + " UserService");
         return "Hardcoded user name";
-    }
-
-    public String getMetaInfo() {
-        infoService.trace();
-        return infoService.getInfo();
     }
 }
